@@ -6,7 +6,7 @@ import { BiLogoDiscordAlt } from "react-icons/bi";
 
 
 
-export const Contacts = () => {
+export const Contact = () => {
 
     const {toast} = useToast();
     const {isSubmitting, setIsSubmitting} = useState(false);

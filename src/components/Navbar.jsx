@@ -7,7 +7,7 @@ const navItems = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contacts" },
+  { name: "Contact", href: "#contact" },
 ];
 
 export const Navbar = () => {
@@ -30,13 +30,10 @@ export const Navbar = () => {
       )}
     >
       <div className="container flex items-center justify-between">
-        <a
-          className="text-xl font-bold text-primary flex items-center"
-          href="#hero"
-        >
-          <span className="relative z-10">
-            <span className="text-glow text-foreground"> Melrose </span> Portfolio
-          </span>
+        <a href="#hero" className="h-10 w-10 relative z-10">
+          <img src="/logo.svg" alt="Melrose Alonsagay" />
+
+          <p className="text-xl font-bold text-primary items-start text-glow" > Portfolio </p>
         </a>
 
         {/* desktop nav */}
