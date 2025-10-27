@@ -22,6 +22,16 @@ export const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Add smooth scroll function for contact link
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav
       className={cn(
@@ -30,10 +40,9 @@ export const Navbar = () => {
       )}
     >
       <div className="container flex items-center justify-between">
-        <a href="#hero" className="h-10 w-10 relative z-10">
-          <img src="/logo.svg" alt="Melrose Alonsagay" />
-
-          <p className="text-xl font-bold text-primary items-start text-glow" > Portfolio </p>
+        <a href="#hero" className="flex items-center gap-3 relative z-10">
+          <img src="/logo.svg" alt="Melrose Alonsagay" className="h-12 w-12" />
+          <p className="text-xl font-bold text-primary text-glow">Portfolio</p>
         </a>
 
         {/* desktop nav */}
@@ -43,6 +52,7 @@ export const Navbar = () => {
               key={key}
               href={item.href}
               className="text-foreground/80 hover:text-primary transition-colors duration-300"
+              onClick={item.name === "Contact" ? handleContactClick : undefined}
             >
               {item.name}
             </a>
@@ -50,13 +60,12 @@ export const Navbar = () => {
         </div>
 
         {/* mobile nav */}
-
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="md:hidden p-2 text-foreground z-50"
           aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}{" "}
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
         <div
@@ -74,7 +83,13 @@ export const Navbar = () => {
                 key={key}
                 href={item.href}
                 className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                onClick={() => setIsMenuOpen(false)}
+                onClick={(e) => {
+                  if (item.name === "Contact") {
+                    e.preventDefault();
+                    handleContactClick(e);
+                  }
+                  setIsMenuOpen(false);
+                }}
               >
                 {item.name}
               </a>
